@@ -1,0 +1,6 @@
+opencv-python
+tensorboard
+seaborn
+scikit-learn
+albumentations
+tqdm
