@@ -1,6 +1,6 @@
 import torch
-from torch import nn, Tensor
 import torch.nn.functional as F
+from torch import Tensor, nn
 
 
 def conv3x3(in_planes: int, out_planes: int, stride: int = 1, groups: int = 1, dilation: int = 1) -> nn.Conv2d:
@@ -50,7 +50,6 @@ class ResBlock(nn.Module):
 
 
 class ConvLSTMCell(nn.Module):
-
     def __init__(self, input_dim, hidden_dim, kernel_size, bias):
         """
         Initialize ConvLSTM cell.
@@ -75,11 +74,13 @@ class ConvLSTMCell(nn.Module):
         self.padding = kernel_size[0] // 2, kernel_size[1] // 2
         self.bias = bias
 
-        self.conv = nn.Conv2d(in_channels=self.input_dim + self.hidden_dim,
-                              out_channels=4 * self.hidden_dim,
-                              kernel_size=self.kernel_size,
-                              padding=self.padding,
-                              bias=self.bias)
+        self.conv = nn.Conv2d(
+            in_channels=self.input_dim + self.hidden_dim,
+            out_channels=4 * self.hidden_dim,
+            kernel_size=self.kernel_size,
+            padding=self.padding,
+            bias=self.bias,
+        )
 
     def forward(self, input_tensor, cur_state):
         h_cur, c_cur = cur_state
@@ -99,8 +100,10 @@ class ConvLSTMCell(nn.Module):
         return h_next, c_next
 
     def init_hidden(self, batch_size, h, w):
-        return (torch.zeros(batch_size, self.hidden_dim, h, w, device=self.conv.weight.device),
-                torch.zeros(batch_size, self.hidden_dim, h, w, device=self.conv.weight.device))
+        return (
+            torch.zeros(batch_size, self.hidden_dim, h, w, device=self.conv.weight.device),
+            torch.zeros(batch_size, self.hidden_dim, h, w, device=self.conv.weight.device),
+        )
 
 
 class Encoder(nn.Module):
@@ -137,7 +140,7 @@ class MyDeconv(nn.Module):
     def __init__(self, inp_nc, out_nc, kernel_size=5, scale_factor=2):
         super(MyDeconv, self).__init__()
 
-        self.upsample = nn.Upsample(scale_factor=scale_factor, mode='bilinear')
+        self.upsample = nn.Upsample(scale_factor=scale_factor, mode="bilinear")
         self.conv = nn.Conv2d(inp_nc, out_nc, kernel_size, padding=kernel_size // 2, bias=True)
         self.lrelu = nn.LeakyReLU(0.1)
 
@@ -156,7 +159,7 @@ class FlowDecoder(nn.Module):
         immediate_channels.reverse()
         self.num_scales = len(immediate_channels)
 
-        self.upsample = nn.Upsample(scale_factor=2, mode='bilinear')
+        self.upsample = nn.Upsample(scale_factor=2, mode="bilinear")
 
         self.deconvs = nn.ModuleList()
         for x, y in zip(immediate_channels[:-1], immediate_channels[1:]):
@@ -187,22 +190,16 @@ class BIE(nn.Module):
         self.model = nn.Sequential(
             nn.Conv2d(6, 64, 5, stride=1, padding=2, bias=True),
             nn.LeakyReLU(0.1),
-
             nn.Conv2d(64, 64, 5, stride=1, padding=2, bias=True),
             nn.LeakyReLU(0.1),
-
             nn.Conv2d(64, 64, 5, stride=2, padding=2, bias=True),
             nn.LeakyReLU(0.1),
-
             nn.Conv2d(64, 128, 5, stride=1, padding=2, bias=True),
             nn.LeakyReLU(0.1),
-
             nn.Conv2d(128, 128, 5, stride=1, padding=2, bias=True),
             nn.LeakyReLU(0.1),
-
             nn.Conv2d(128, 128, 5, stride=2, padding=2, bias=True),
             nn.LeakyReLU(0.1),
-
             nn.Conv2d(128, 128, 5, stride=2, padding=2, bias=True),
             nn.LeakyReLU(0.1),
         )

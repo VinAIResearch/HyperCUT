@@ -2,7 +2,7 @@ from torch import nn
 
 
 N_BLOCKS = 6
-PADDING_TYPE = 'reflect'
+PADDING_TYPE = "reflect"
 
 
 class ResnetBlock(nn.Module):
@@ -72,7 +72,7 @@ class ResnetBlock(nn.Module):
 class ResnetIm2Vec(nn.Module):
     def __init__(self, in_dim, out_dim, nf=32):
         super().__init__()
- 
+
         model = [
             nn.ReflectionPad2d(3),
             nn.Conv2d(in_dim, nf, kernel_size=7, padding=0, bias=True),
@@ -81,7 +81,7 @@ class ResnetIm2Vec(nn.Module):
 
         n_downsampling = 5
         for i in range(n_downsampling):  # add downsampling layers
-            mult = 2 ** i
+            mult = 2**i
             inc = min(nf * mult, out_dim)
             if i == 0:
                 inc = nf * mult
@@ -108,7 +108,7 @@ class ResnetIm2Vec(nn.Module):
         # breakpoint()
         feat = self.model(x)
         # for ind, layer in enumerate(self.model):
-            # x = layer(x)
+        # x = layer(x)
         # feat = x
         feat = self.avgpool(feat)
         feat = feat.squeeze(3).squeeze(2)

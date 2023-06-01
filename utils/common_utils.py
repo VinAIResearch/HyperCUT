@@ -1,15 +1,20 @@
-import os.path as osp
-import seaborn as sns
-import pandas as pd
 import importlib
-from sklearn.manifold import TSNE
+import os.path as osp
 import random
+
 import cv2
 import numpy as np
+import pandas as pd
+import seaborn as sns
+from sklearn.manifold import TSNE
+
+
+def is_scalar(var):
+    return not isinstance(var, (tuple, list, dict, set, np.ndarray))
 
 
 def load_module_from_file(path):
-    module_name = osp.basename(path).replace('.py', '')
+    module_name = osp.basename(path).replace(".py", "")
     spec = importlib.util.spec_from_file_location(module_name, path)
 
     module = importlib.util.module_from_spec(spec)
@@ -19,23 +24,19 @@ def load_module_from_file(path):
 
 
 def visualize_tsne(feats, labels, save_path):
-    feats_embeded = TSNE(n_components=2, learning_rate='auto', init='random').fit_transform(feats)
+    feats_embeded = TSNE(n_components=2, learning_rate="auto", init="random").fit_transform(feats)
 
-    df = pd.DataFrame({
-        'x': feats_embeded[:, 0],
-        'y': feats_embeded[:, 1],
-        'f': labels
-    })
+    df = pd.DataFrame({"x": feats_embeded[:, 0], "y": feats_embeded[:, 1], "f": labels})
 
     color_palette = sns.color_palette("Spectral", as_cmap=True)
-    plot = sns.scatterplot(data=df, x='x', y='y', hue='f', palette=color_palette)
-    plot.legend(title='$\mathcal{H}$', fontsize=12, title_fontsize=15)
-    plot.tick_params(axis='both', which='major', labelsize=12)
+    plot = sns.scatterplot(data=df, x="x", y="y", hue="f", palette=color_palette)
+    plot.legend(title="$\mathcal{H}$", fontsize=12, title_fontsize=15)
+    plot.tick_params(axis="both", which="major", labelsize=12)
     fig = plot.get_figure()
-    
 
     fig.savefig(save_path, dpi=300)
     fig.clf()
+
 
 class NearBBoxResizedSafeCrop:
     """
@@ -55,19 +56,15 @@ class NearBBoxResizedSafeCrop:
         else:
             x_min, y_min, x_max, y_max = bbox
 
-        try:
-            img_h, img_w, _ = image.shape
-        except: 
-            image = prev_img
-            img_h, img_w, _ = image.shape
+        img_h, img_w, _ = prev_img.shape
 
         # Prepare args
         if args is None:
             args = {}
-            args['ratio'] = self.max_ratio * random.uniform(0, 1)
+            args["ratio"] = self.max_ratio * random.uniform(0, 1)
 
         # Crop image
-        ratio = args['ratio']
+        ratio = args["ratio"]
         x_min = int((1 - ratio) * x_min)
         y_min = int((1 - ratio) * y_min)
         x_max = int(x_max + ratio * (img_w - x_max))

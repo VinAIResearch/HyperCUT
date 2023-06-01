@@ -1,8 +1,7 @@
 import torch
-from torch.utils.data import DataLoader
-
-from models import get_model
 from data import get_datasets
+from models import get_model
+from torch.utils.data import DataLoader
 
 
 class Tester:
@@ -10,7 +9,7 @@ class Tester:
         self.args = args
 
         if args.exp_name is None:
-            self.exp_name = args.dataset_name + '_' + args.model_name
+            self.exp_name = args.dataset_name + "_" + args.model_name
         else:
             self.exp_name = args.exp_name
         self.device = torch.device("cuda")
@@ -23,11 +22,9 @@ class Tester:
         # self.save_path = args.save_path
 
     def load_dataloader(self):
-        _, _, _, test_set = get_datasets(
-            **vars(self.args)
-        )
+        _, _, _, test_set = get_datasets(**vars(self.args))
 
-        print(f'Number of test data points: {len(test_set)}')
+        print(f"Number of test data points: {len(test_set)}")
 
         self.dataloader = DataLoader(test_set, batch_size=1, shuffle=False, num_workers=self.args.num_workers)
 

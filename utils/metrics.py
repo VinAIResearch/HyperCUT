@@ -1,11 +1,11 @@
-from utils.training_utils import unnormalize_vid_tensor
 import numpy as np
 import torch
+from utils.training_utils import unnormalize_vid_tensor
 
 
 def calculate_PSNR(pred, gt):
     if pred.shape[0] > 1 or gt.shape[0] > 1:
-        raise NotImplementedError('Not supported batch validation yet')
+        raise NotImplementedError("Not supported batch validation yet")
 
     pred = unnormalize_vid_tensor(pred)
     gt = unnormalize_vid_tensor(gt)
@@ -17,7 +17,7 @@ def calculate_PSNR(pred, gt):
 
 def calculate_pPSNR(pred, gt):
     if pred.shape[0] > 1 or gt.shape[0] > 1:
-        raise NotImplementedError('Not supported batch validation yet')
+        raise NotImplementedError("Not supported batch validation yet")
 
     p1, mean_p1 = calculate_PSNR(pred, gt)
     p2, mean_p2 = calculate_PSNR(torch.flip(pred, [1]), gt)

@@ -4,7 +4,7 @@ ckpts/
 checkpoints/
 ckpts/
 slurm/
-**/.ipynb_checkpoints/**
+*/.ipynb_checkpoints/**
 results/
 runs/
 build/
@@ -44,6 +44,7 @@ test/.coverage
 test/data/legacy_serialized.pt
 *~
 .idea
+
 *.jpg
 *.zip
 *.pth

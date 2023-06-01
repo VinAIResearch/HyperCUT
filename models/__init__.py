@@ -1,13 +1,14 @@
 import glob
 import os.path as osp
+
 from utils.common_utils import load_module_from_file
 
 
 def get_backbone(backbone_name, backbone_kwargs):
     model_folder = osp.dirname(osp.abspath(__file__))
-    backbone_folder = osp.join(model_folder, 'backbones')
+    backbone_folder = osp.join(model_folder, "backbones")
 
-    backbone_filenames = sorted(glob.glob(osp.join(backbone_folder, '*.py')))
+    backbone_filenames = sorted(glob.glob(osp.join(backbone_folder, "*.py")))
 
     backbone_modules = []
     for backbone_filename in backbone_filenames:
@@ -22,7 +23,7 @@ def get_backbone(backbone_name, backbone_kwargs):
             break
 
     if not found:
-        raise NotImplementedError(f'Unrecognized backbone {backbone_name}')
+        raise NotImplementedError(f"Unrecognized backbone {backbone_name}")
 
     return backbone
 
@@ -30,7 +31,7 @@ def get_backbone(backbone_name, backbone_kwargs):
 def get_model(model_name, model_kwargs):
     model_folder = osp.dirname(osp.abspath(__file__))
 
-    model_filenames = sorted(glob.glob(osp.join(model_folder, '*_model.py')))
+    model_filenames = sorted(glob.glob(osp.join(model_folder, "*_model.py")))
 
     model_modules = []
     for model_filename in model_filenames:
@@ -45,6 +46,6 @@ def get_model(model_name, model_kwargs):
             break
 
     if not found:
-        raise NotImplementedError(f'Unrecognized {model_name} model!')
+        raise NotImplementedError(f"Unrecognized {model_name} model!")
 
     return model
