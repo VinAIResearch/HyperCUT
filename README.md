@@ -146,17 +146,17 @@ You can run this script to evaluate *`hit`* and *`con`* ratio that are mentioned
 
 ```.bash
 python test_hypercut.py --dataset_name dataname \
-						--metadata_root path/to/metadata.json \
-						--pretrained_path path/to/pretrained_HyperCUT.pth \
+			--metadata_root path/to/metadata.json \
+			--pretrained_path path/to/pretrained_HyperCUT.pth \
 ```
 
 ### Using HyperCUT
 After training HyperCUT, you can use our pretrained model to generate a new `order` for each sample using this script:
 ```.bash
 python generate_order.py --dataset_name dataname \
-						 --metadata_root path/to/metadata.json \
-    					 --save_path path/to/generated_metadata.json \
-    					 --pretrained_path path/to/pretrained_HyperCUT.pth \
+			--metadata_root path/to/metadata.json \
+    			--save_path path/to/generated_metadata.json \
+    			--pretrained_path path/to/pretrained_HyperCUT.pth \
 ```
 
 ## Deblurring Model
@@ -166,20 +166,20 @@ You can train deblurring networks using `train_blur2vid.py`. For example:
 ```.bash
 # Train baseline model
 python train_blur2vid.py --dataset_name dataname \
-						 --metadata_root path/to/generated_metadata.json \
-						 --batch_size 8 \
-    					 --backbone Jin \
-    					 --loss_type order_inv \
-    					 --target_frames 1 2 3 4 5 6 7 \
+			--metadata_root path/to/generated_metadata.json \
+			--batch_size 8 \
+    			--backbone Jin \
+    			--loss_type order_inv \
+    			--target_frames 1 2 3 4 5 6 7 \
 
 # Train baseline + HyperCUT model
 python train_blur2vid.py --dataset_name dataname \
-						 --metadata_root path/to/generated_metadata.json \
-						 --batch_size 8 \
-						 --backbone Jin \ 
-    					 --loss_type hypercut \
-						 --hypercut_path path/to/pretrained_HyperCUT.pth \
-    					 --target_frames 1 2 3 4 5 6 7 \						
+			--metadata_root path/to/generated_metadata.json \
+			--batch_size 8 \
+			--backbone Jin \ 
+    			--loss_type hypercut \
+			--hypercut_path path/to/pretrained_HyperCUT.pth \
+    			--target_frames 1 2 3 4 5 6 7 \						
 ```
 In this project, we offer configurable arguments for training different baselines either with their original settings or incorporating our HyperCUT regularization. The key arguments to consider are:
 - `backbone`: This current version of the code incorporates two baseline methods - those proposed by Jin et al. [[1]](#references)  and Purohit et al. [[2]](#references) , located under `./models/backbones/`. The training process of the deblurring network can be tailored to employ either of these methods by setting the `backbone` value to `Jin` or `Purohit`, respectively.
@@ -190,18 +190,18 @@ Like the training process, you can evaluate the deblurring model with 2 config:
 ```.bash
 # Evaluate baseline model
 python test_blur2vid.py --dataset_name dataname \
-						--metadata_root path/to/generated_metadata.json \
-						--batch_size 8 \
-						--backbone Jin \
-						--target_frames 1 2 3 4 5 6 7 \
+			--metadata_root path/to/generated_metadata.json \
+			--batch_size 8 \
+			--backbone Jin \
+			--target_frames 1 2 3 4 5 6 7 \
 
 # Evaluate baseline + HyperCUT model
 python test_blur2vid.py --dataset_name dataname \
-						--metadata_root path/to/generated_metadata.json \
-						--batch_size 8 \
-						--backbone Jin \ 
-						--hypercut_path path/to/pretrained_HyperCUT.pth \
-						--target_frames 1 2 3 4 5 6 7 \						
+			--metadata_root path/to/generated_metadata.json \
+			--batch_size 8 \
+			--backbone Jin \ 
+			--hypercut_path path/to/pretrained_HyperCUT.pth \
+			--target_frames 1 2 3 4 5 6 7 \						
 ```
 
 ## Results
