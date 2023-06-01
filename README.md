@@ -3,22 +3,22 @@
 <a href="https://arxiv.org/abs/2304.01686"><img src="https://img.shields.io/badge/https%3A%2F%2Farxiv.org%2Fabs%2F2304.01686-arxiv-brightred"></a>
 
 <div align="center">
-  <a href="https://hao-pt.github.io/" target="_blank">Bang-Dang&nbsp;Pham</a> &emsp; <b>&middot;</b> &emsp;
-  <a href="https://scholar.google.com/citations?user=g0RS3_kAAAAJ&hl=en&oi=ao" target="_blank">Phong&nbsp;Tran</a> &emsp; 
+  <a href="https://scholar.google.com/citations?hl=en&authuser=1&user=STehQhoAAAAJ" target="_blank">Bang-Dang&nbsp;Pham</a> &emsp; <b>&middot;</b> &emsp;
+  <a href="https://scholar.google.com/citations?hl=en&authuser=1&user=-BPaFHcAAAAJ" target="_blank">Phong&nbsp;Tran</a> &emsp; 
   <b>&middot;</b> &emsp;
   <a href="https://sites.google.com/site/anhttranusc/" target="_blank">Anh&nbsp;Tran</a> &emsp; 
   <b>&middot;</b> &emsp;
-  <a href="https://sites.google.com/site/anhttranusc/" target="_blank">Cuong&nbsp;Pham</a> &emsp; 
+  <a href="https://sites.google.com/view/cuongpham/home" target="_blank">Cuong&nbsp;Pham</a> &emsp; 
   <b>&middot;</b> &emsp;
-  <a href="https://sites.google.com/site/anhttranusc/" target="_blank">Rang&nbsp;Nguyen</a> &emsp; 
+  <a href="https://rangnguyen.github.io/" target="_blank">Rang&nbsp;Nguyen</a> &emsp; 
   <b>&middot;</b> &emsp;
-  <a href="https://sites.google.com/site/anhttranusc/" target="_blank">Minh&nbsp;Hoai</a> &emsp; 
+  <a href="https://www3.cs.stonybrook.edu/~minhhoai/" target="_blank">Minh&nbsp;Hoai</a> &emsp; 
   <br> <br>
   <a href="https://www.vinai.io/">VinAI Research, Vietnam</a>
 </div>
 <br>
 <div align="center">
-    <img width="1000" alt="teaser" src="assets/hypercut_brief.png"/>
+    <img width="1000" alt="teaser" src="assets/HyperCUT_brief.png"/>
 </div>
 
 <!-- [Tuan Duc Ngo](https://ngoductuanlhp.github.io/),
@@ -205,16 +205,12 @@ python test_blur2vid.py --dataset_name dataname \
 ```
 
 ## Results
-To ensure a fair evaluation, we adopt the maximum value from the results of both forward and backward predictions for each metric - $\mathrm{PSNR}, \mathrm{SSIM}$ and $\mathrm{LPIPS}$. This can be mathematically expressed as:
-$$
-\mathrm{pM}\left(\left[x_k^i, x_{N-k}^i\right]\right)=\max \left(\mathrm{M}\left(\left[x_k^i, x_{N-k}^i\right]\right), \mathrm{M}\left(\left[x_{N-k}^i, x_k^i\right]\right)\right.\\
-$$
-Here, $\mathrm{M}$ represents the particular metric under consideration.
+To ensure a fair evaluation, we adopt the maximum value from the results of both forward and backward predictions for each metric - $\mathrm{PSNR}, \mathrm{SSIM}$ and $\mathrm{LPIPS}$.
 
 Table 1: Performance boost (pPSNR↑) of each frame on REDS (left) and RB2V-Street (average of all three categories) dataset when using HyperCUT
 
 | Model | $1^{st}$ frame | $2^{nd}$ frame | $3^{rd}$ frame | $4^{th}$ frame | $5^{th}$ frame | $6^{th}$ frame | $7^{th}$ frame |
-| --------------- | :---------------: | :---: | :---: | :---: | :---: |:---: |:---: |
+| -------------------------- | :---------------: | :---: | :---: | :---: | :---: |:---: |:---: |
 | Purohit et al. [[2]](#references) | 22.78/26.99 | 24.47/27.99 | 26.14/29.45 | 31.50/**32.08** | 26.12/29.55 | 24.49/28.06 | 22.83/27.04 |
 | Purohit et al. [[2]](#references) + Ours| **26.75/28.29** | **28.30/29.20** | **29.42/30.43** | **29.97/32.08**| **29.41/30.53** | **28.30/29.22** | **26.76/28.25**|
 
