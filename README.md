@@ -60,7 +60,7 @@ Details of the model architecture and experimental results can be found in [our 
 
 ### Prerequisites
 - Python >= 3.7
-- Python >= 1.9.0
+- Pytorch >= 1.9.0
 - CUDA >= 10.0
 
 
