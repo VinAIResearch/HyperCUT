@@ -1,4 +1,4 @@
-# HyperCUT: Video Sequence from a Single Blurry Image using Unsupervised Ordering [(CVPR'23)](https://arxiv.org/abs/2304.01686)
+# HyperCUT: Video Sequence from a Single Blurry Image using Unsupervised Ordering [(CVPR'23)](https://openaccess.thecvf.com/content/CVPR2023/papers/Pham_HyperCUT_Video_Sequence_From_a_Single_Blurry_Image_Using_Unsupervised_CVPR_2023_paper.pdf)
 
 <a href="https://arxiv.org/abs/2304.01686"><img src="https://img.shields.io/badge/https%3A%2F%2Farxiv.org%2Fabs%2F2304.01686-arxiv-brightred"></a>
 
@@ -21,18 +21,7 @@
     <img width="1000" alt="teaser" src="assets/HyperCUT_brief.png"/>
 </div>
 
-<!-- [Tuan Duc Ngo](https://ngoductuanlhp.github.io/),
-[Binh-Son Hua](https://sonhua.github.io/),
-[Khoi Nguyen](https://www.khoinguyen.org/)<br>
-VinAI Research, Vietnam -->
-
-<!-- > **Abstract**: 
-Existing 3D instance segmentation methods are predominant by a bottom-up design: a manually fine-tuned algorithm to group points into clusters followed by a refinement network. Relying on the quality of the clusters, these methods generate susceptible results when (1) nearby objects with the same semantic class are packed together, or (2) large objects with complex shapes. To address these shortcomings, we introduce ISBNet, a novel cluster-free method that represents instances as kernels and decodes instance masks via dynamic convolution. To efficiently generate a high-recall and discriminative kernel set, we propose a simple strategy, named Instance-aware Farthest Point Sampling, to sample candidates and leverage the point aggregation layer adopted from PointNet++ to encode candidate features. Moreover, we show that training 3D instance segmentation in a multi-task learning setting with an additional axis-aligned bounding box prediction head further boosts performance. Our method set new state-of-the-art results on ScanNetV2 (55.9), S3DIS (60.8), and STPLS3D (49.2) in terms of AP and retains fast inference time (237ms per scene on ScanNetV2).
-![overview](docs/isbnet_arch.png) -->
-
-
 > **Abstract**: We consider the challenging task of training models for image-to-video deblurring, which aims to recover a sequence of sharp images corresponding to a given blurry image input. A critical issue disturbing the training of an image-to-video model is the ambiguity of the frame ordering since both the forward and backward sequences are plausible solutions. This paper proposes an effective self-supervised ordering scheme that allows training high-quality image-to-video deblurring models. Unlike previous methods that rely on order-invariant losses, we assign an explicit order for each video sequence, thus avoiding the order-ambiguity issue. Specifically, we map each video sequence to a vector in a latent high-dimensional space so that there exists a hyperplane such that for every video sequence, the vectors extracted from it and its reversed sequence are on different sides of the hyperplane. The side of the vectors will be used to define the order of the corresponding sequence. Last but not least, we propose a real-image dataset for the image-to-video deblurring problem that covers a variety of popular domains, including face, hand, and street. Extensive experimental results confirm the effectiveness of our method.
-<!-- ![overview](docs/isbnet_arch.png) -->
 
 Details of the model architecture and experimental results can be found in [our paper](https://arxiv.org/abs/2304.01686):
 
@@ -49,14 +38,15 @@ Details of the model architecture and experimental results can be found in [our 
 
 ## Table of contents
 1. [Getting Started](#getting-started)
-2. [Datasets](#datasets)
-3. [HyperCUT Ordering](#hypercut-ordering)
-4. [Deblurring Model](#deblurring-model)
-5. [Results](#results)
-6. [References](#references)
-7. [Contacts](#Contacts)
+2. [Datasets](#datasets-floppy_disk)
+3. [HyperCUT Ordering](#hypercut-ordering-rocket)
+4. [Deblurring Model](#deblurring-model-zap)
+5. [Results](#results-trophy)
+6. [Acknowledgments](#acknowledgments)
+7. [References](#references)
+8. [Contacts](#contacts-mailbox_with_mail)
 
-## Getting Started
+## Getting Started :sparkles:
 
 ### Prerequisites
 - Python >= 3.7
@@ -76,8 +66,18 @@ pip install -r requirements.txt
 ```
 
 ## Datasets :floppy_disk:
+### RB2V Dataset
+You can find the our proposed dataset here.
+
+Table 1: The statistic of our dataset
+| Dataset | Train | Test | 
+| :------: | :---: | :---: |
+| RB2V-Street | 9000 | 2053 |
+| RB2V-Face | 8000 | 2157 |
+| RB2V-Hand | 12000 | 4722 |
+
 ### Data Preperation
-Download datasets REDS and BAist++ then unzip to folder `./dataset` and organize following this format:
+Download datasets [REDS](https://seungjunnah.github.io/Datasets/reds.html) and [B-Aist++](https://drive.google.com/file/d/1Zt96gFnpPpuIqeD3QGPlW6fXhkogjuy_/view) then unzip to folder `./dataset` and organize following this format:
 ```
 root
 ├── 000000
@@ -133,7 +133,7 @@ where `root` is the name of dataset. The `metadata.json` file is the compulsory 
 ```
 In this format, the attribute `order` has total 3 value `[ignore, reverse, random]` which define the order of sharp images and our HyperCUT would identify the value `ignore` or `reverse` (more detailed in section [HyperCUT Ordering](#training)). 
 
-## HyperCUT Ordering
+## HyperCUT Ordering :rocket:
 
 ### Training
 Before training our HyperCUT, you can set the atrribute `order` of each sample in `metatdata.json` file is `ignore` by default, then use the following script to train the model:
@@ -159,7 +159,7 @@ python generate_order.py --dataset_name dataname \
     			--pretrained_path path/to/pretrained_HyperCUT.pth \
 ```
 
-## Deblurring Model
+## Deblurring Model :zap:
 
 ### Training
 You can train deblurring networks using `train_blur2vid.py`. For example:
@@ -204,22 +204,42 @@ python test_blur2vid.py --dataset_name dataname \
 			--target_frames 1 2 3 4 5 6 7 \						
 ```
 
-## Results
-To ensure a fair evaluation, we adopt the maximum value from the results of both forward and backward predictions for each metric - $\mathrm{PSNR}, \mathrm{SSIM}$ and $\mathrm{LPIPS}$.
+## Results :trophy:
+### Quantitative Result
+To ensure a fair evaluation, we adopt the maximum value from the results of both forward and backward predictions for each metric. We denote them with the prefix "p"- $\mathrm{pPSNR}$.
 
-Table 1: Performance boost (pPSNR↑) of each frame on REDS (left) and RB2V-Street (average of all three categories) dataset when using HyperCUT
+Table 2: Quantitative result (pPSNR↑) compared between the baseline [[1]](#references) and our HyperCUT-based model on REDS dataset
+
+| Model | $1^{st}$ frame | $2^{nd}$ frame | $3^{rd}$ frame | $4^{th}$ frame | $5^{th}$ frame | $6^{th}$ frame | $7^{th}$ frame |
+| -------------------------- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| [[1]](#references) | 20.65 | 22.63 | 24.20 | 23.50 | 24.20 | 22.63 | 20.65 |
+| [[1]](#references) + Ours | **22.87** | **24.88** | **26.29** | **25.10** | **26.29** | **24.88** | **22.86** |
+
+Table 3: Performance boost (pPSNR↑) of each frame on REDS (left) and RB2V-Street (average of all three categories) dataset when using HyperCUT
 
 | Model | $1^{st}$ frame | $2^{nd}$ frame | $3^{rd}$ frame | $4^{th}$ frame | $5^{th}$ frame | $6^{th}$ frame | $7^{th}$ frame |
 | -------------------------- | :---------------: | :---: | :---: | :---: | :---: |:---: |:---: |
-| Purohit et al. [[2]](#references) | 22.78/26.99 | 24.47/27.99 | 26.14/29.45 | 31.50/**32.08** | 26.12/29.55 | 24.49/28.06 | 22.83/27.04 |
-| Purohit et al. [[2]](#references) + Ours| **26.75/28.29** | **28.30/29.20** | **29.42/30.43** | **29.97/32.08**| **29.41/30.53** | **28.30/29.22** | **26.76/28.25**|
+| [[2]](#references) | 22.78/26.99 | 24.47/27.99 | 26.14/29.45 | 31.50/**32.08** | 26.12/29.55 | 24.49/28.06 | 22.83/27.04 |
+| [[2]](#references) + Ours| **26.75/28.29** | **28.30/29.20** | **29.42/30.43** | **29.97/32.08**| **29.41/30.53** | **28.30/29.22** | **26.76/28.25**|
 
+### Qualitative Result
+- The result of Jin et al .[[1]](#references) compare to HyperCUT-based
+![Example 3](assets/1.gif)
+- The result of Purohit et al .[[2]](#references) compare to HyperCUT-based
+![Example 3](assets/2.gif)
+- Moreover, we also compare our HyperCUT-base model with the baseline having the additional motion guidance input [[3]](#references)
+![Example 3](assets/3.gif)
 
+## Acknowledgments
+
+Thanks for the model based code from the implementation of Purohit et al.([code](https://github.com/anshulbshah/Blurred-Image-to-Video)), Jin et al.([code](https://github.com/MeiguangJin/Learning-to-Extract-a-Video-Sequence-from-a-Single-Motion-Blurred-Image)).
 
 ## References
-[1] Meiguang Jin, Givi Meishvili, and Paolo Favaro. Learning to extract a video sequence from a single motion-blurred image. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018.
+[1] Meiguang Jin, Givi Meishvili, and Paolo Favaro. Learning to Extract a Video Sequence from a Single Motion-Blurred Image. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018.
 
-[2] Kuldeep Purohit, Anshul Shah, and AN Rajagopalan. Bringing alive blurred moments. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019.
+[2] Kuldeep Purohit, Anshul Shah, and AN Rajagopalan. Bringing Alive Blurred Moments. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2019.
 
-## Contacts :email:
+[3] Zhihang Zhong, Xiao Sun, Zhirong Wu, Yinqiang Zheng, Stephen Lin, and Imari Sato. Animation from Blur: Multi-modal Blur Decomposition with Motion Guidance. In Proceedings of the European Conference on Computer Vision. Springer, 2022.
+
+## Contacts :mailbox_with_mail:
 If you have any questions or suggestions about this repo, please feel free to contact me (bangdang2000@gmail.com).
