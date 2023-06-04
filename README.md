@@ -18,7 +18,7 @@
 </div>
 <br>
 <div align="center">
-    <img width="1000" alt="teaser" src="assets/HyperCUT_brief.png"/>
+    <img width="900" alt="teaser" src="assets/HyperCUT_brief.png"/>
 </div>
 
 > **Abstract**: We consider the challenging task of training models for image-to-video deblurring, which aims to recover a sequence of sharp images corresponding to a given blurry image input. A critical issue disturbing the training of an image-to-video model is the ambiguity of the frame ordering since both the forward and backward sequences are plausible solutions. This paper proposes an effective self-supervised ordering scheme that allows training high-quality image-to-video deblurring models. Unlike previous methods that rely on order-invariant losses, we assign an explicit order for each video sequence, thus avoiding the order-ambiguity issue. Specifically, we map each video sequence to a vector in a latent high-dimensional space so that there exists a hyperplane such that for every video sequence, the vectors extracted from it and its reversed sequence are on different sides of the hyperplane. The side of the vectors will be used to define the order of the corresponding sequence. Last but not least, we propose a real-image dataset for the image-to-video deblurring problem that covers a variety of popular domains, including face, hand, and street. Extensive experimental results confirm the effectiveness of our method.
@@ -224,9 +224,9 @@ Table 3: Performance boost (pPSNR↑) of each frame on REDS (left) and RB2V-Stre
 
 ### Qualitative Result
 - The result of Jin et al .[[1]](#references) compare to HyperCUT-based
-![Example 3](assets/1.gif)
+![Example 1](assets/1.gif)
 - The result of Purohit et al .[[2]](#references) compare to HyperCUT-based
-![Example 3](assets/2.gif)
+![Example 2](assets/2.gif)
 - Moreover, we also compare our HyperCUT-base model with the baseline having the additional motion guidance input [[3]](#references)
 ![Example 3](assets/3.gif)
 
