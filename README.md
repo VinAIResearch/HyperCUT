@@ -124,11 +124,10 @@ where `root` is the name of dataset. The `metadata.json` file is the compulsory 
             "frame006_path": "00000/sharp/0000_6.png",
             "frame007_path": "00000/sharp/0000_7.png"
         },
-		{
+	{
 			...
-		}
-
-	]
+	}
+    ]
 }
 ```
 In this format, the attribute `order` has total 3 value `[ignore, reverse, random]` which define the order of sharp images and our HyperCUT would identify the value `ignore` or `reverse` (more detailed in section [HyperCUT Ordering](#training)). 
