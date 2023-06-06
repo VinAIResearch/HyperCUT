@@ -231,7 +231,7 @@ Table 3: Performance boost (pPSNR↑) of each frame on REDS (left) and RB2V-Stre
 ![Example 1](assets/Ex1.gif)
 - The result of Purohit et al .[[2]](#references) compare to HyperCUT-based
 ![Example 2](assets/Ex2.gif)
-- Moreover, we also compare our HyperCUT-base model with the baseline having the additional motion guidance input [[3]](#references)
+- Moreover, we also compare our HyperCUT-base model with the baseline having the additional motion guidance input [[3]](#references) in B-Aist++ dataset
 ![Example 3](assets/Ex3.gif)
 
 ## Acknowledgments
