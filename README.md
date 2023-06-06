@@ -67,7 +67,7 @@ pip install -r requirements.txt
 
 ## Datasets :floppy_disk:
 ### RB2V Dataset
-You can download our proposed RB2V dataset by this script:
+You can download our proposed RB2V dataset by following this script:
 ```
 chmod +x ./dataset/download_RB2V.sh
 bash ./dataset/download_RB2V.sh
@@ -161,7 +161,7 @@ python generate_order.py --dataset_name dataname \
     			--save_path path/to/generated_metadata.json \
     			--pretrained_path path/to/pretrained_HyperCUT.pth \
 ```
-And we also provide the pretrained model of our proposed dataset  [RB2V-Street](https://drive.google.com/file/d/1K9VMze1R8v-4ityzGybCnd2dceeZ_FxH/view?usp=sharing), [RB2V-Hand](https://drive.google.com/file/d/1kKaDeiaFO61-k68hUonJJPh0Akf8rQoZ/view?usp=sharing), [RB2V-Face](https://drive.google.com/file/d/1kKaDeiaFO61-k68hUonJJPh0Akf8rQoZ/view?usp=sharing) 
+And we also provide the pretrained model of our proposed dataset  [RB2V-Street](https://drive.google.com/file/d/1K9VMze1R8v-4ityzGybCnd2dceeZ_FxH/view?usp=sharing), [RB2V-Hand](https://drive.google.com/file/d/1kKaDeiaFO61-k68hUonJJPh0Akf8rQoZ/view?usp=sharing), [RB2V-Face](https://drive.google.com/file/d/13fBfkWf_fpSvZAIxDLXQOEfnweceKKcp/view?usp=sharing) 
 
 ## Deblurring Model :zap:
 
@@ -228,11 +228,11 @@ Table 3: Performance boost (pPSNR↑) of each frame on REDS (left) and RB2V-Stre
 
 ### Qualitative Result
 - The result of Jin et al .[[1]](#references) compare to HyperCUT-based
-![Example 1](assets/1_new.gif)
+![Example 1](assets/Ex1.gif)
 - The result of Purohit et al .[[2]](#references) compare to HyperCUT-based
-![Example 2](assets/2_new.gif)
+![Example 2](assets/Ex2.gif)
 - Moreover, we also compare our HyperCUT-base model with the baseline having the additional motion guidance input [[3]](#references)
-![Example 3](assets/3.gif)
+![Example 3](assets/Ex3.gif)
 
 ## Acknowledgments
 
