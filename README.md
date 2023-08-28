@@ -207,6 +207,15 @@ python test_blur2vid.py --dataset_name dataname \
 			--hypercut_path path/to/pretrained_HyperCUT.pth \
 			--target_frames 1 2 3 4 5 6 7 \						
 ```
+### Blur2Vid Inference
+If you want to perform inference using the Blur2Vid model, we've provided a sample inference code that demonstrates the process
+```.bash
+# Sample instruction for inference with Jin backbone
+python inference.py --backbone Jin \
+                    --target_frames 1 2 3 4 5 6 7 \
+                    --pretrained_path path/to/pretrained_Blur2Vid.pth \
+                    --blur_path path/to/blurry_image \				
+```
 
 ## Results :trophy:
 ### Quantitative Result
