@@ -80,10 +80,11 @@ Table 1: The statistic of our dataset
 | RB2V-Face | 8000 | 2157 |
 | RB2V-Hand | 12000 | 4722 |
 
-By downloading this dataset, USER agrees:
-- to use the dataset for research or educational purposes only.
-- to not distribute the dataset or part of the dataset in any original or modified form.
-- and to cite our paper whenever the dataset is used to help produce published results.
+> ***By downloading this dataset, USER agrees:***
+>   
+> * to use the dataset for research or educational purposes only.
+> * to not distribute the dataset or part of the dataset in any original or modified form.
+> * and to cite our paper whenever the dataset is used to help produce published results.
 
 ### Data Preperation
 Download datasets [REDS](https://seungjunnah.github.io/Datasets/reds.html) and [B-Aist++](https://drive.google.com/file/d/1Zt96gFnpPpuIqeD3QGPlW6fXhkogjuy_/view) then unzip to folder `./dataset` and organize following this format:
