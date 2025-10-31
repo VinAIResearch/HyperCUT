@@ -80,12 +80,6 @@ Table 1: The statistic of our dataset
 | RB2V-Face | 8000 | 2157 |
 | RB2V-Hand | 12000 | 4722 |
 
-> ***By downloading this dataset, USER agrees:***
->   
-> * to use the dataset for research or educational purposes only.
-> * to not distribute the dataset or part of the dataset in any original or modified form.
-> * and to cite our paper whenever the dataset is used to help produce published results.
-
 ### Data Preperation
 Download datasets [REDS](https://seungjunnah.github.io/Datasets/reds.html) and [B-Aist++](https://drive.google.com/file/d/1Zt96gFnpPpuIqeD3QGPlW6fXhkogjuy_/view) then unzip to folder `./dataset` and organize following this format:
 ```
@@ -248,6 +242,11 @@ Table 3: Performance boost (pPSNR↑) of each frame on REDS (left) and RB2V-Stre
 ![Example 2](assets/Ex2.gif)
 - Moreover, we also compare our HyperCUT-base model with the baseline having the additional motion guidance input [[3]](#references) in B-Aist++ dataset
 ![Example 3](assets/Ex3.gif)
+
+## License
+
+The RB2V dataset is licensed under the permissive license *BSD 3-Clause*.
+The source code of the HyperCUT algorithm is licensed under the *GPLv3* licence.
 
 ## Acknowledgments
 
