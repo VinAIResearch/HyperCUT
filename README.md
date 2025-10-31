@@ -245,8 +245,9 @@ Table 3: Performance boost (pPSNR↑) of each frame on REDS (left) and RB2V-Stre
 
 ## License
 
-The RB2V dataset is licensed under the permissive license *BSD 3-Clause*.
-The source code of the HyperCUT algorithm is licensed under the *GPLv3* licence.
+The RB2V dataset is licensed under the permissive license **BSD 3-Clause**.
+
+The source code of the HyperCUT algorithm is licensed under the **GPLv3** licence.
 
 ## Acknowledgments
 
